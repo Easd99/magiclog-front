@@ -3,6 +3,8 @@
 Frontend de la aplicación MagicLog, conectado a una API con autenticación y gestión de productos y usuarios.
 
 ---
+Link de la pagina: https://sunny-marzipan-90faff.netlify.app/
+---
 
 ## 🚀 Cómo iniciar el proyecto
 
