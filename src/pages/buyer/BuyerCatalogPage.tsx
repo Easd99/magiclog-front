@@ -45,7 +45,7 @@ const BuyerCatalogPage: React.FC = () => {
 
         <MainLayout>
             <div className="flex-grow-1 p-4">
-                {/* Filtro por nombre o SKU */}
+
                 <Form.Control
                     type="text"
                     placeholder="Buscar por nombre o SKU"
@@ -55,7 +55,7 @@ const BuyerCatalogPage: React.FC = () => {
                 />
 
                 <Row>
-                    {/* Col izquierda: Filtros de precio */}
+
                     <Col xs={12} md={3} lg={2}>
                         <div className="bg-light p-3 border rounded mb-4">
                             <h6 className="mb-3">Filtros</h6>
@@ -83,7 +83,6 @@ const BuyerCatalogPage: React.FC = () => {
                         </div>
                     </Col>
 
-                    {/* Col derecha: Productos */}
                     <Col xs={12} md={9} lg={10}>
                         <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-4">
                             {filtered.map((product) => (
@@ -95,7 +94,12 @@ const BuyerCatalogPage: React.FC = () => {
                                                     variant="top"
                                                     src={product.imageURL}
                                                     alt={product.name}
-                                                    style={{height: '120px', objectFit: 'cover'}}
+                                                    style={{
+                                                        width: '80%',
+                                                        height: '120px',
+                                                        objectFit: 'cover',
+                                                        marginBottom: '1rem',
+                                                    }}
                                                 />
                                             ) : (
                                                 <div
