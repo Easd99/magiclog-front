@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import LoginPage from './pages/auth/Login';
+import RegisterPage from "./pages/auth/Register";
+import BuyerCatalogPage from "./pages/buyer/BuyerCatalogPage";
+import AdminCatalogPage from "./pages/admin/AdminCatalogPage";
+import SellerInventoryPage from "./pages/seller/SellerInventoryPage";
+import CreateProductPage from "./pages/seller/CreateProductPage";
+import RequireAuth from "./components/auth/RequireAuth";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/" element={<Navigate to="/products" replace/>}/>
+
+
+                <Route path="/products" element={
+                    // <RequireAuth>
+                    <BuyerCatalogPage/>
+                    //</RequireAuth>
+                }/>
+                <Route path="/products/admin" element={
+                    <RequireAuth>
+                        <AdminCatalogPage/>
+                    </RequireAuth>
+                }/>
+                <Route path="/products/seller" element={
+                    <RequireAuth>
+                        <SellerInventoryPage/>
+                    </RequireAuth>
+                }/>
+                <Route path="/products/seller/create" element={
+                    <RequireAuth>
+                        <CreateProductPage/>
+                    </RequireAuth>
+                }/>
+                <Route path="/products/seller/edit/:id" element={
+                    <RequireAuth>
+                        <CreateProductPage/>
+                    </RequireAuth>
+                }/>
+                <Route path="*" element={<NotFoundPage/>}/>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
