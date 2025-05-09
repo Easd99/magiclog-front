@@ -78,9 +78,7 @@ const AdminCatalogPage: React.FC = () => {
                     </div>
                 )}
 
-                {/* Filtros + tarjetas */}
                 <Row>
-                    {/* Filtros (lado izquierdo) */}
                     <Col xs={12} md={3} lg={2} className="mb-4">
                         <div className="bg-light p-3 border rounded">
                             <h6>Filtros</h6>
@@ -103,7 +101,6 @@ const AdminCatalogPage: React.FC = () => {
                         </div>
                     </Col>
 
-                    {/* Tarjetas de productos */}
                     <Col xs={12} md={9} lg={10}>
                         <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-4">
                             {filteredProducts.map((product) => (
@@ -116,7 +113,12 @@ const AdminCatalogPage: React.FC = () => {
                                                         variant="top"
                                                         src={product.imageURL}
                                                         alt={product.name}
-                                                        style={{height: '120px', objectFit: 'cover'}}
+                                                        style={{
+                                                            width: '80%',
+                                                            height: '120px',
+                                                            objectFit: 'cover',
+                                                            marginBottom: '1rem',
+                                                        }}
                                                     />
                                                 ) : (
                                                     <div

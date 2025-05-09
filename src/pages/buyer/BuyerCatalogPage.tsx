@@ -17,7 +17,6 @@ const BuyerCatalogPage: React.FC = () => {
     const [priceFilter, setPriceFilter] = useState(670); // valor máximo del slider
     const [maxPrice, setMaxPrice] = useState(670);
 
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
         fetchProducts();
@@ -46,14 +45,28 @@ const BuyerCatalogPage: React.FC = () => {
 
         <MainLayout>
             <div className="flex-grow-1 p-4">
+
+                <Form.Control
+                    type="text"
+                    placeholder="Buscar por nombre o SKU"
+                    className="mb-4"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+
                 <Row>
+
                     <Col xs={12} md={3} lg={2}>
                         <div className="bg-light p-3 border rounded mb-4">
                             <h6 className="mb-3">Filtros</h6>
                             <div className="d-flex justify-content-between align-items-center mb-2">
                                 <span>Precios</span>
-                                <Button variant="link" size="sm" onClick={() => setPriceFilter(maxPrice)}
-                                        className="p-0">
+                                <Button
+                                    variant="link"
+                                    size="sm"
+                                    onClick={() => setPriceFilter(maxPrice)}
+                                    className="p-0"
+                                >
                                     Borrar
                                 </Button>
                             </div>
@@ -69,31 +82,35 @@ const BuyerCatalogPage: React.FC = () => {
                             </div>
                         </div>
                     </Col>
+
                     <Col xs={12} md={9} lg={10}>
                         <Row xs={1} sm={2} md={2} lg={3} xl={4} className="g-4">
                             {filtered.map((product) => (
                                 <Col key={product.id}>
                                     <Card className="text-center">
                                         <Card.Body>
-                                            {
-                                                product.imageURL ? (
-                                                    <Card.Img
-                                                        variant="top"
-                                                        src={product.imageURL}
-                                                        alt={product.name}
-                                                        style={{height: '120px', objectFit: 'cover'}}
-                                                    />
-                                                ) : (
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            height: '120px',
-                                                            backgroundColor: '#f0f0f0',
-                                                            marginBottom: '1rem',
-                                                        }}
-                                                    />
-                                                )
-                                            }
+                                            {product.imageURL ? (
+                                                <Card.Img
+                                                    variant="top"
+                                                    src={product.imageURL}
+                                                    alt={product.name}
+                                                    style={{
+                                                        width: '80%',
+                                                        height: '120px',
+                                                        objectFit: 'cover',
+                                                        marginBottom: '1rem',
+                                                    }}
+                                                />
+                                            ) : (
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '120px',
+                                                        backgroundColor: '#f0f0f0',
+                                                        marginBottom: '1rem',
+                                                    }}
+                                                />
+                                            )}
                                             <Card.Title>{product.name}</Card.Title>
                                             <Card.Text>{product.sku}</Card.Text>
                                             <Card.Text className="fw-bold">${product.price.toFixed(2)}</Card.Text>
