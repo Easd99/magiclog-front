@@ -13,11 +13,10 @@ interface Product {
 
 const BuyerCatalogPage: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
-    const [search, setSearch] = useState('');
+    const [search] = useState('');
     const [priceFilter, setPriceFilter] = useState(670); // valor máximo del slider
     const [maxPrice, setMaxPrice] = useState(670);
 
-    const token = localStorage.getItem('token');
 
     useEffect(() => {
         fetchProducts();
